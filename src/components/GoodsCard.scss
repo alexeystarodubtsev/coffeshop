@@ -1,0 +1,9 @@
+.goods-card {
+  max-width: 345px;
+  &__media {
+    height: 250px;
+  }
+  &__actions {
+    justify-content: flex-end;
+  }
+}

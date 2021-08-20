@@ -10,7 +10,7 @@
         "dot-location": ["error", "property"],
         "eqeqeq": ["error", "always"],
         "no-cond-assign": ["error", "except-parens"],
-        "no-const-assign": "error",
+        "no-const-assign": "warn",
         // за него отрабатывает обычный @typescript-eslint/no-unused-vars
         "no-unused-vars": "off",
         // за него отрабатывает обычный @typescript-eslint/no-use-before-define

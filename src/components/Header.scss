@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  background-color: palegreen;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 50px;
+  color: lightslategray;
+  &__text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+  }
+  &__basket {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
