@@ -3,6 +3,7 @@ export interface Goods {
     name: string;
     price: number;
     info: string;
+    tax: number;
 }
 
 export interface GoodsInBasket {

@@ -44,7 +44,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                         <div className={`${CLASS}__container`}>
                             {Object.keys(basket)
                                 .map(g => ({ ...goods[g], qty: basket[g].qty }))
-                                .map(({ imageUrl, name, qty, price }) => (
+                                .map(({ imageUrl, name, qty, price, tax }) => (
                                     <div key={name} className={`${CLASS}__item`}>
                                         <img alt={name} className={`${CLASS}__item-image`} src={imageUrl} />
                                         <Typography className={`${CLASS}__item-name`} component="p">
@@ -73,7 +73,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                                                 color="textSecondary"
                                                 component="p"
                                             >
-                                                {qty * price}$
+                                                {qty * price} (+{Math.floor(qty * price * tax * 100) / 100} taxes)$
                                             </Typography>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                             <Divider variant="middle" />
                             <div className={`${CLASS}__footer-total`}>
                                 <Typography className={`${CLASS}__footer-total-text`} component="p">
-                                    Total
+                                    Total with taxes
                                 </Typography>
                                 <Typography className={`${CLASS}__footer-total-sum`} component="p">
                                     {totalSum}$
