@@ -1,16 +1,20 @@
 .header {
   width: 100%;
-  background-color: palegreen;
+  background-color: gold;
+  position: fixed;
+  z-index: 2;
+  font-size: 50px;
   align-items: center;
   justify-content: center;
   display: flex;
-  height: 50px;
-  color: lightslategray;
+  height: 100px;
+  color: black;
   &__text {
     width: 100%;
     display: flex;
     justify-content: center;
     position: absolute;
+    font-family: 'Nosifer', cursive;
   }
   &__basket {
     margin-left: auto;

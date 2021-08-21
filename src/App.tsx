@@ -3,19 +3,28 @@ import './App.css';
 import store from './store';
 import { Provider } from 'react-redux';
 import { Header } from './components/Header';
-import { GoodsCard } from './components/GoodsCard';
+import { GoodsList } from './components/GoodsList';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#000'
+        },
+        secondary: {
+            main: '#FFD700'
+        }
+    }
+});
 
 const App = () => (
     <Provider store={store}>
-        <div>
-            <Header />
-            <GoodsCard
-                imageUrl={'/img/cappuccino.jfif'}
-                info={`An espresso-based coffee drink that originated in Italy, and is simply prepared with steamed milk foam (microfoam)`}
-                name={'cappuccino'}
-                price={100}
-            />
-        </div>
+        <ThemeProvider theme={theme}>
+            <div>
+                <Header />
+                <GoodsList />
+            </div>
+        </ThemeProvider>
     </Provider>
 );
 

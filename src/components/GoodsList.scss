@@ -1,0 +1,9 @@
+.goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  top: 110px;
+  &__item {
+    padding: 10px;
+  }
+}

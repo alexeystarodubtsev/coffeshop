@@ -28,7 +28,6 @@ export const GoodsCard: React.FC<Props> = ({ imageUrl, name, price, info }) => {
     const dispatch = useDispatch();
     const addToBasket = (goods: GoodsInBasket) => dispatch(actions.addToBasket(goods));
     const countInBasket = useSelector<ModelState>(state => state.basket[name]?.qty || 0) as number;
-    //const handleAddToBanch = dispatch(addToBanch);
     return (
         <Card className={CLASS}>
             <CardActionArea>
@@ -43,8 +42,11 @@ export const GoodsCard: React.FC<Props> = ({ imageUrl, name, price, info }) => {
                 </CardContent>
             </CardActionArea>
             <CardActions className={`${CLASS}__actions`}>
+                <Typography className={`${CLASS}__actions-price`} component="p">
+                    {price}$
+                </Typography>
                 {countInBasket ? (
-                    <>
+                    <div className={`${CLASS}__actions-buttons`}>
                         <Button
                             color="primary"
                             size="small"
@@ -60,7 +62,7 @@ export const GoodsCard: React.FC<Props> = ({ imageUrl, name, price, info }) => {
                         >
                             <AddIcon />
                         </Button>
-                    </>
+                    </div>
                 ) : (
                     <Button color="primary" size="small" onClick={() => addToBasket({ name, qty: 1 })}>
                         <ShoppingBasketIcon />

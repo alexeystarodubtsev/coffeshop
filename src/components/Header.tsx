@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Basket } from './Basket';
 
 import { ModelState } from '../reducer';
-
 const CLASS = 'header';
 
 export const Header: React.FC = () => {
@@ -22,11 +21,11 @@ export const Header: React.FC = () => {
 
     return (
         <header className={CLASS}>
-            <div className={`${CLASS}__text`}>Welcome to best coffee</div>
+            <div className={`${CLASS}__text`}> BEE COFFEE </div>
             <div className={`${CLASS}__basket`}>
                 <IconButton aria-label="cart" onClick={handleClick}>
                     {countInBasket ? (
-                        <Badge badgeContent={countInBasket} color="secondary">
+                        <Badge badgeContent={countInBasket} color="error">
                             <ShoppingCartIcon />
                         </Badge>
                     ) : (

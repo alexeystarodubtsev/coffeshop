@@ -2,3 +2,11 @@ body {
     margin: 0;
     font-family: "Roboto Thin";
 }
+body ::-webkit-scrollbar {
+    width: 7px;
+    background-color: #f9f9fd;
+}
+body ::-webkit-scrollbar-thumb {
+    background: linear-gradient(gray, darkgray);;
+    border-radius: 10px;
+}

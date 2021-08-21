@@ -1,9 +1,23 @@
 .goods-card {
-  max-width: 345px;
+  width: 345px;
+  height: 430px;
+  position: relative;
   &__media {
     height: 250px;
   }
   &__actions {
-    justify-content: flex-end;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    &-price {
+      font-weight: 500 !important;
+      margin-left: 8px !important;
+    }
+    &-buttons {
+      display: flex;
+      align-items: center;
+    }
   }
 }

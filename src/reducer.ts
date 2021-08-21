@@ -12,17 +12,43 @@ export const actions = {
 export interface ModelState {
     basket: { [key in string]: GoodsInBasket };
     goods: { [key in string]: Goods };
+    totalSum: number;
 }
 const initialState: ModelState = {
     basket: {},
     goods: {
-        cappuccino: {
-            name: 'cappuccino',
+        Cappuccino: {
+            name: 'Cappuccino',
             price: 5,
-            imageUrl: '/img/cappuccino.jfif',
+            imageUrl: '/img/cappuccino.jpg',
             info: 'An espresso-based coffee drink that originated in Italy, and is simply prepared with steamed milk foam (microfoam)'
+        },
+        Latte: {
+            name: 'Latte',
+            price: 4,
+            imageUrl: '/img/latte.jpg',
+            info: 'A coffee drink of Italian origin made with espresso and steamed milk.'
+        },
+        Americano: {
+            name: 'Americano',
+            price: 3,
+            imageUrl: '/img/americano.jpg',
+            info: 'Coffee drink prepared by diluting an espresso with hot water'
+        },
+        Sandwich: {
+            name: 'Sandwich',
+            price: 3,
+            imageUrl: '/img/sandwich.jpg',
+            info: 'Sandwich with chicken, vegetables and souse'
+        },
+        Lemonade: {
+            name: 'Lemonade',
+            price: 3,
+            imageUrl: '/img/limonade.jpg',
+            info: 'Fresh drink in summer heat'
         }
-    }
+    },
+    totalSum: 0
 };
 
 const reducer: Reducer<ModelState, ExtractActions<typeof actions>> = (state = initialState, action) => {
@@ -35,7 +61,12 @@ const reducer: Reducer<ModelState, ExtractActions<typeof actions>> = (state = in
 
             return {
                 ...state,
-                basket: newBasket
+                basket: newBasket,
+                totalSum: Object.keys(newBasket).length
+                    ? Object.keys(newBasket)
+                          .map(g => state.goods[g].price * newBasket[g].qty)
+                          .reduce((acc, val) => acc + val)
+                    : 0
             };
         default:
             return state;
