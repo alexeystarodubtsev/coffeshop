@@ -33,7 +33,13 @@ const initialState: ModelState = {
             name: 'Americano',
             price: 3,
             imageUrl: '/img/americano.jpg',
-            info: 'Coffee drink prepared by diluting an espresso with hot water'
+            info: 'A coffee drink prepared by diluting an espresso with hot water'
+        },
+        Lemonade: {
+            name: 'Lemonade',
+            price: 3,
+            imageUrl: '/img/limonade.jpg',
+            info: 'Fresh drink in summer heat'
         },
         Sandwich: {
             name: 'Sandwich',
@@ -41,11 +47,17 @@ const initialState: ModelState = {
             imageUrl: '/img/sandwich.jpg',
             info: 'Sandwich with chicken, vegetables and souse'
         },
-        Lemonade: {
-            name: 'Lemonade',
-            price: 3,
-            imageUrl: '/img/limonade.jpg',
-            info: 'Fresh drink in summer heat'
+        Cheesecake: {
+            name: 'Cheesecake',
+            price: 7,
+            imageUrl: '/img/cheesecake.jpg',
+            info: 'A dessert consisting of a creamy filling usually containing cheese baked in a pastry or pressed-crumb shell.'
+        },
+        'Pancakes with honey': {
+            name: 'Pancakes with honey',
+            price: 10,
+            imageUrl: '/img/pancakes.jpg',
+            info: 'Pancakes with honey.'
         }
     },
     totalSum: 0
