@@ -3,7 +3,6 @@
   background-color: gold;
   position: fixed;
   z-index: 2;
-  font-size: 50px;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -15,6 +14,13 @@
     justify-content: center;
     position: absolute;
     font-family: 'Nosifer', cursive;
+    font-size: 50px;
+    @media (max-width: 560px) {
+      font-size: 32px;
+    }
+    @media (max-width: 400px) {
+      font-size: 24px;
+    }
   }
   &__basket {
     margin-left: auto;

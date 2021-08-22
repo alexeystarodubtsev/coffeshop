@@ -2,7 +2,7 @@ import React from 'react';
 import Popover from '@material-ui/core/Popover';
 import './Basket.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions, ModelState } from '../reducer';
+import { actions, ModelState, asyncActions } from '../reducer';
 import { GoodsInBasket, Goods } from '../types';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -23,6 +23,11 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
     const totalSum = useSelector<ModelState>(state => state.totalSum) as ModelState['totalSum'];
     const dispatch = useDispatch();
     const addToBasket = (goods: GoodsInBasket) => dispatch(actions.addToBasket(goods));
+    const makeOrder = () => dispatch(asyncActions.makeOrderAsync());
+    const handleMakeOrder = () => {
+        makeOrder();
+        onClose();
+    };
     const open = Boolean(anchorEl);
     return (
         <Popover
@@ -73,7 +78,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                                                 color="textSecondary"
                                                 component="p"
                                             >
-                                                {qty * price} (+{Math.floor(qty * price * tax * 100) / 100} taxes)$
+                                                {qty * price} (+{Math.floor(qty * price * tax * 100) / 100} tax)$
                                             </Typography>
                                         </div>
                                     </div>
@@ -89,7 +94,12 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                                     {totalSum}$
                                 </Typography>
                             </div>
-                            <Button className={`${CLASS}__footer-buy`} color="secondary" variant="contained">
+                            <Button
+                                className={`${CLASS}__footer-buy`}
+                                color="secondary"
+                                variant="contained"
+                                onClick={handleMakeOrder}
+                            >
                                 Make order
                             </Button>
                         </div>

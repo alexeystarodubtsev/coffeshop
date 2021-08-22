@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  height: calc(100vh - 110px);
+  overflow: auto;
   top: 110px;
   &__item {
     padding: 10px;

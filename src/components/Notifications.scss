@@ -1,0 +1,23 @@
+.notifications {
+  z-index: 10;
+  position: fixed;
+  top: 60px;
+  right: 50px;
+  &__item {
+    background: white;
+    height: 40px;
+    width: 250px;
+    word-break: break-word;
+    border: 2px solid grey;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    &-close-btn {
+      min-width: 40px !important;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { Header } from './components/Header';
 import { GoodsList } from './components/GoodsList';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Notifications } from './components/Notifications';
 
 const theme = createTheme({
     palette: {
@@ -23,6 +24,7 @@ const App = () => (
             <div>
                 <Header />
                 <GoodsList />
+                <Notifications />
             </div>
         </ThemeProvider>
     </Provider>
