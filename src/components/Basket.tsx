@@ -3,8 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import './Basket.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions, ModelState, asyncActions } from '../reducer';
-import { GoodsInBasket, Goods } from '../types';
-import CardMedia from '@material-ui/core/CardMedia';
+import { GoodsInBasket } from '../types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -106,7 +105,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                     </>
                 ) : (
                     <div className={`${CLASS}__empty-basket`}>
-                        <img className={`${CLASS}__empty-basket-img`} src={'/img/basket.svg'} />
+                        <img alt="" className={`${CLASS}__empty-basket-img`} src={'/img/basket.svg'} />
                         <Typography className={`${CLASS}__empty-basket-text`} component="p">
                             It seems your basket is empty...
                         </Typography>

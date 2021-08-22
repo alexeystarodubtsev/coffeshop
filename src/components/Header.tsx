@@ -3,7 +3,7 @@ import './Header.scss';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Basket } from './Basket';
 
 import { ModelState } from '../reducer';

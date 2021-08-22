@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './GoodsCard.scss';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,7 +24,6 @@ interface Props {
 const CLASS = 'goods-card';
 
 export const GoodsCard: React.FC<Props> = ({ imageUrl, name, price, info }) => {
-    const [tgh, shj] = useState(false);
     const dispatch = useDispatch();
     const addToBasket = (goods: GoodsInBasket) => dispatch(actions.addToBasket(goods));
     const countInBasket = useSelector<ModelState>(state => state.basket[name]?.qty || 0) as number;

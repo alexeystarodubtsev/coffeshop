@@ -1,11 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ModelState, actions } from '../reducer';
-import ClearIcon from '@material-ui/icons/Clear';
-import { OrderStatus } from '../types';
 import './Notifications.scss';
-import RemoveIcon from '@material-ui/icons/Remove';
-import Button from '@material-ui/core/Button';
 import { Notification } from './Notification';
 
 const CLASS = 'notifications';
