@@ -71,5 +71,3 @@ export const GoodsCard: React.FC<Props> = ({ imageUrl, name, price, info }) => {
         </Card>
     );
 };
-
-// export const GoodsCard = connect(state => state, mapDispatchToProps)(_GoodsCard);
