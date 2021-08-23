@@ -1,6 +1,8 @@
 body {
     margin: 0;
     font-family: "Roboto Thin";
+    max-height: 100vh;
+    overflow: hidden;
 }
 body ::-webkit-scrollbar {
     width: 7px;

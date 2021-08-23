@@ -2,8 +2,15 @@
   width: 345px;
   height: 430px;
   position: relative;
+  @media (max-width: 400px){
+    width: 300px;
+    height: 370px;
+  }
   &__media {
     height: 250px;
+    @media (max-width: 400px){
+      height: 200px;
+    }
   }
   &__actions {
     justify-content: space-between;
