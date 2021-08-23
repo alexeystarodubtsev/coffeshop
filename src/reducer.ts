@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
-import { Goods, GoodsInBasket, OrderStatus, Notification } from './types';
+import { Goods, GoodsInBasket, OrderStatus, Notification, Discount } from './types';
 import { createAction, ExtractActions } from './utils';
+import _ from 'lodash';
 
 export const types = {
     ADD_TO_BASKET: 'ADD_TO_BASKET',
@@ -34,10 +35,16 @@ export interface ModelState {
     totalSum: number;
     orderStatuses: OrderStatus[];
     notifications: Notification[];
+    discounts: Discount[];
 }
 const initialState: ModelState = {
     basket: {},
     orderStatuses: ['MAKING'],
+    discounts: [
+        { goods: ['Latte', 'Sandwich'], discount: 0.2 },
+        { goods: ['Cappuccino', 'Sandwich'], discount: 0.1 },
+        { goods: ['Lemonade', 'Sandwich'], discount: 0.15 }
+    ],
     goods: {
         Cappuccino: {
             name: 'Cappuccino',
@@ -96,19 +103,45 @@ const initialState: ModelState = {
 const reducer: Reducer<ModelState, ExtractActions<typeof actions>> = (state = initialState, action) => {
     switch (action.type) {
         case types.ADD_TO_BASKET:
-            const newBasket = { ...state.basket };
+            const newBasket = _.cloneDeep(state.basket);
             const goods = action.payload as GoodsInBasket;
             if (goods.qty <= 0 && goods.name in state.basket) delete newBasket[goods.name];
             else if (goods.qty > 0) newBasket[goods.name] = goods;
-
+            const discounts = state.discounts.sort((a, b) => b.discount - a.discount);
+            Object.keys(newBasket).forEach(key => delete newBasket[key].discount);
+            const copyBasket = _.cloneDeep(newBasket);
+            discounts.forEach(discount => {
+                if (discount.goods.every(g => copyBasket[g])) {
+                    discount.goods.forEach(g => {
+                        if (copyBasket[g]) {
+                            copyBasket[g].qty--;
+                            if (!newBasket[g].discount) newBasket[g].discount = [];
+                            newBasket[g].discount?.push(discount.discount);
+                            if (!copyBasket[g].qty) {
+                                delete copyBasket[g];
+                            }
+                        }
+                    });
+                }
+            });
+            Object.keys(newBasket).forEach(
+                key =>
+                    (newBasket[key].totalDiscount =
+                        (newBasket[key].discount?.reduce((acc, value) => acc + value) || 0) / newBasket[key].qty)
+            );
             return {
                 ...state,
                 basket: newBasket,
                 totalSum:
-                    Math.floor(
+                    Math.round(
                         (Object.keys(newBasket).length
                             ? Object.keys(newBasket)
-                                  .map(g => state.goods[g].price * newBasket[g].qty * (1 + state.goods[g].tax))
+                                  .map(
+                                      g =>
+                                          state.goods[g].price *
+                                          newBasket[g].qty *
+                                          (1 + state.goods[g].tax - (newBasket[g]?.totalDiscount || 0))
+                                  )
                                   .reduce((acc, val) => acc + val)
                             : 0) * 100
                     ) / 100

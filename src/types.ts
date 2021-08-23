@@ -9,6 +9,8 @@ export interface Goods {
 export interface GoodsInBasket {
     name: string;
     qty: number;
+    discount?: number[];
+    totalDiscount?: number;
 }
 
 export type OrderStatus = 'MAKING' | 'PREPARING' | 'DONE';
@@ -16,4 +18,9 @@ export type OrderStatus = 'MAKING' | 'PREPARING' | 'DONE';
 export interface Notification {
     title: string;
     date: Date;
+}
+
+export interface Discount {
+    goods: string[];
+    discount: number;
 }

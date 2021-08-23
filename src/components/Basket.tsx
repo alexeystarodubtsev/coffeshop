@@ -47,8 +47,8 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                     <>
                         <div className={`${CLASS}__container`}>
                             {Object.keys(basket)
-                                .map(g => ({ ...goods[g], qty: basket[g].qty }))
-                                .map(({ imageUrl, name, qty, price, tax }) => (
+                                .map(g => ({ ...goods[g], qty: basket[g].qty, discount: basket[g].totalDiscount }))
+                                .map(({ imageUrl, name, qty, price, tax, discount }) => (
                                     <div key={name} className={`${CLASS}__item`}>
                                         <img alt={name} className={`${CLASS}__item-image`} src={imageUrl} />
                                         <Typography className={`${CLASS}__item-name`} component="p">
@@ -77,7 +77,10 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                                                 color="textSecondary"
                                                 component="p"
                                             >
-                                                {qty * price} (+{Math.floor(qty * price * tax * 100) / 100} tax)$
+                                                {qty * price} (
+                                                {!!discount &&
+                                                    `-${Math.round(discount * price * qty * 100) / 100} discount `}
+                                                +{Math.round(qty * price * tax * 100) / 100} tax)$
                                             </Typography>
                                         </div>
                                     </div>
@@ -87,7 +90,7 @@ export const Basket: React.FC<Props> = ({ anchorEl, onClose }) => {
                             <Divider variant="middle" />
                             <div className={`${CLASS}__footer-total`}>
                                 <Typography className={`${CLASS}__footer-total-text`} component="p">
-                                    Total with taxes
+                                    Total with taxes and discounts
                                 </Typography>
                                 <Typography className={`${CLASS}__footer-total-sum`} component="p">
                                     {totalSum}$
