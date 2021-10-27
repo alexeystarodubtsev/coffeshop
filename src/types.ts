@@ -13,8 +13,12 @@ export interface GoodsInBasket {
     totalDiscount?: number;
 }
 
-export type OrderStatus = 'MAKING' | 'PREPARING' | 'DONE';
-
+export enum OrderStatuses {
+    MAKING = 'MAKING',
+    PREPARING = 'PREPARING',
+    DONE = 'DONE'
+}
+export type OrderStatusType = keyof typeof OrderStatuses;
 export interface Notification {
     title: string;
     date: Date;

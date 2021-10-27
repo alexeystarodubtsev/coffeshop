@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { Goods, GoodsInBasket, OrderStatus, Notification, Discount } from './types';
+import { Goods, GoodsInBasket, OrderStatuses, OrderStatusType, Notification, Discount } from './types';
 import { createAction, ExtractActions } from './utils';
 import _ from 'lodash';
 
@@ -33,13 +33,13 @@ export interface ModelState {
     basket: { [key in string]: GoodsInBasket };
     goods: { [key in string]: Goods };
     totalSum: number;
-    orderStatuses: OrderStatus[];
+    orderStatuses: OrderStatusType[];
     notifications: Notification[];
     discounts: Discount[];
 }
-const initialState: ModelState = {
+export const initialState: ModelState = {
     basket: {},
-    orderStatuses: ['MAKING'],
+    orderStatuses: [OrderStatuses.MAKING],
     discounts: [
         { goods: ['Latte', 'Sandwich'], discount: 0.2 },
         { goods: ['Cappuccino', 'Sandwich'], discount: 0.1 },
@@ -157,7 +157,7 @@ const reducer: Reducer<ModelState, ExtractActions<typeof actions>> = (state = in
             return {
                 ...state,
                 basket: {},
-                orderStatuses: [...state.orderStatuses].splice(-1, 1, 'PREPARING', 'MAKING'),
+                orderStatuses: [...state.orderStatuses].splice(-1, 1, OrderStatuses.PREPARING, OrderStatuses.MAKING),
                 notifications: [
                     ...state.notifications,
                     { title: `Thank you for order! We've started to prepare your order...`, date }
@@ -167,7 +167,7 @@ const reducer: Reducer<ModelState, ExtractActions<typeof actions>> = (state = in
             const { orderIndex, date: dateFinish } = action.payload as { orderIndex: number; date: Date };
             return {
                 ...state,
-                orderStatuses: [...state.orderStatuses].splice(orderIndex, 1, 'DONE'),
+                orderStatuses: [...state.orderStatuses].splice(orderIndex, 1, OrderStatuses.DONE),
                 notifications: [
                     ...state.notifications,
                     { title: 'Your order is ready! Please take it and enjoy!', date: dateFinish }
