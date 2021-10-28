@@ -10,13 +10,12 @@ interface Props {
 }
 
 const CLASS = 'notifications';
-
+const timeoutSec = 1000;
 export const Notification: React.FC<Props> = ({ onClose, notification: { title } }) => {
     const [open, setState] = useState(false);
     useEffect(() => {
         setState(true);
     }, []);
-    const timeoutSec = 1000;
     const handleClose = () => {
         setState(false);
         setTimeout(() => {
